@@ -1,0 +1,2 @@
+ALTER TYPE "public"."user_role" ADD VALUE 'staff' BEFORE 'admin';--> statement-breakpoint
+ALTER TABLE "users" ADD COLUMN "permissions" jsonb DEFAULT '{"manageProducts":false,"manageCategories":false,"manageOrders":false,"manageDiscounts":false,"viewReports":false}'::jsonb NOT NULL;

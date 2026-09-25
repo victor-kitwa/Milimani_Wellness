@@ -1,0 +1,521 @@
+@import "tailwindcss";
+
+/* Poppins, self-hosted via @fontsource (no runtime request to Google's
+   font CDN). Only the weights actually used across the site are loaded:
+   400/500/600/700/800, plus the italic cuts the hero's accent word needs. */
+@import "@fontsource/poppins/400.css";
+@import "@fontsource/poppins/500.css";
+@import "@fontsource/poppins/600.css";
+@import "@fontsource/poppins/700.css";
+@import "@fontsource/poppins/800.css";
+@import "@fontsource/poppins/400-italic.css";
+@import "@fontsource/poppins/600-italic.css";
+
+/*
+ * Milimani Wellness palette
+ *
+ * Primary brand: deep royal navy (from the Milimani logotype)
+ * Accent: coral red (from the flower top of the logo)
+ * Support: emerald green (wellness)
+ *
+ * Two themes: light (warm cream ground) and dark (deep navy-charcoal ground).
+ * The theme is set as data-theme="light" | "dark" on the <html> element.
+ * If nothing is set, system preference wins via prefers-color-scheme.
+ */
+
+:root {
+  color-scheme: light;
+
+  --background: #fafaf9;
+  --surface: #f5f5f4;
+  --surface-2: #e7e5e4;
+  --card: #ffffff;
+  --foreground: #0f172a;
+  --muted-foreground: #64748b;
+  --muted: #94a3b8;
+  --border: #e5e7eb;
+  --border-strong: #d1d5db;
+
+  --brand: #1e40af;
+  --brand-hover: #1d4ed8;
+  --brand-strong: #1e3a8a;
+  --brand-soft: #dbeafe;
+  --brand-foreground: #ffffff;
+
+  --accent: #dc2626;
+  --accent-hover: #b91c1c;
+  --accent-soft: #fee2e2;
+  --accent-foreground: #ffffff;
+
+  --success: #059669;
+  --success-soft: #d1fae5;
+  --warning: #d97706;
+  --warning-soft: #fef3c7;
+  --danger: #dc2626;
+  --danger-soft: #fee2e2;
+
+  /* Neumorphic inset-shadow pair for the admin dashboard's form controls
+     (see --inset-shadow-neu below): a soft dark shadow on the bottom-right
+     and a bright highlight on the top-left, carved from the same --card
+     surface the control sits on, so it reads as pressed into the material
+     rather than boxed in with a border. */
+  --neu-shadow-dark: rgba(15, 23, 42, 0.14);
+  --neu-shadow-light: rgba(255, 255, 255, 0.85);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+
+    --background: #0c1120;
+    --surface: #111827;
+    --surface-2: #1e293b;
+    --card: #131a2c;
+    --foreground: #f1f5f9;
+    --muted-foreground: #94a3b8;
+    --muted: #64748b;
+    --border: #1f2937;
+    --border-strong: #334155;
+
+    --brand: #60a5fa;
+    --brand-hover: #93c5fd;
+    --brand-strong: #3b82f6;
+    --brand-soft: #1e3a8a;
+    --brand-foreground: #0c1120;
+
+    --accent: #f87171;
+    --accent-hover: #fca5a5;
+    --accent-soft: #7f1d1d;
+    --accent-foreground: #ffffff;
+
+    --success: #34d399;
+    --success-soft: #064e3b;
+    --warning: #fbbf24;
+    --warning-soft: #78350f;
+    --danger: #f87171;
+    --danger-soft: #7f1d1d;
+
+    --neu-shadow-dark: rgba(0, 0, 0, 0.55);
+    --neu-shadow-light: rgba(255, 255, 255, 0.04);
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --background: #0c1120;
+  --surface: #111827;
+  --surface-2: #1e293b;
+  --card: #131a2c;
+  --foreground: #f1f5f9;
+  --muted-foreground: #94a3b8;
+  --muted: #64748b;
+  --border: #1f2937;
+  --border-strong: #334155;
+
+  --brand: #60a5fa;
+  --brand-hover: #93c5fd;
+  --brand-strong: #3b82f6;
+  --brand-soft: #1e3a8a;
+  --brand-foreground: #0c1120;
+
+  --accent: #f87171;
+  --accent-hover: #fca5a5;
+  --accent-soft: #7f1d1d;
+  --accent-foreground: #ffffff;
+
+  --success: #34d399;
+  --success-soft: #064e3b;
+  --warning: #fbbf24;
+  --warning-soft: #78350f;
+  --danger: #f87171;
+  --danger-soft: #7f1d1d;
+
+  --neu-shadow-dark: rgba(0, 0, 0, 0.55);
+  --neu-shadow-light: rgba(255, 255, 255, 0.04);
+}
+
+@theme inline {
+  /* Structural */
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+
+  /* Brand */
+  --color-brand: var(--brand);
+  --color-brand-hover: var(--brand-hover);
+  --color-brand-strong: var(--brand-strong);
+  --color-brand-soft: var(--brand-soft);
+  --color-brand-foreground: var(--brand-foreground);
+
+  /* Accent */
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-foreground: var(--accent-foreground);
+
+  /* Semantic */
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+
+  --color-brand-dark: var(--brand-strong);
+
+  /* Neumorphic pressed-in inset shadow for admin form controls. A separate
+     namespace from --shadow-* on purpose (Tailwind v4 keeps inset-shadow,
+     shadow and ring as distinct box-shadow layers), so it composes cleanly
+     with the focus ring instead of overwriting it. */
+  --inset-shadow-neu: inset 3px 3px 6px var(--neu-shadow-dark), inset -3px -3px 6px var(--neu-shadow-light);
+
+  --font-sans: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+/* Make Tailwind's dark: variant respond to the data-theme attribute
+   (default in Tailwind v4 is prefers-color-scheme only). This lets us
+   keep dark: overrides in components in sync with the toggle. */
+@custom-variant dark (&:where([data-theme="dark"] *, [data-theme="dark"]));
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+@layer utilities {
+  .container-page {
+    max-width: 80rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/*
+ * Custom animated cursor (see components/ui/custom-cursor.tsx).
+ * --cursor-color / --cursor-color-active default to the theme's own brand
+ * and accent tokens, so the cursor re-skins itself automatically with the
+ * rest of the site — override either variable to reskin independently.
+ *
+ * The `.custom-cursor-active` class is added to <html> by the component,
+ * only once it has confirmed (via matchMedia) that motion isn't reduced
+ * and the pointer is a mouse/trackpad. The @media block below is the CSS
+ * side of that same guard: on touch/coarse pointers or reduced-motion, the
+ * cursor elements stay hidden and `cursor: none` never applies, even if
+ * JS is slow to mount or disabled outright.
+ */
+:root {
+  --cursor-ball-size: 18px;
+  --cursor-ball-size-active: 34px;
+  --cursor-dot-size: 7px;
+  --cursor-color: var(--brand);
+  --cursor-color-active: var(--accent);
+}
+
+.custom-cursor-active,
+.custom-cursor-active a,
+.custom-cursor-active button,
+.custom-cursor-active input,
+.custom-cursor-active textarea,
+.custom-cursor-active select,
+.custom-cursor-active label,
+.custom-cursor-active [role="button"] {
+  cursor: none !important;
+}
+
+.custom-cursor-ball,
+.custom-cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-radius: 9999px;
+  pointer-events: none;
+  z-index: 9999;
+  will-change: transform;
+}
+
+.custom-cursor-ball {
+  width: var(--cursor-ball-size);
+  height: var(--cursor-ball-size);
+  background: var(--cursor-color);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--cursor-color) 15%, transparent);
+  transition:
+    width 0.25s ease-out,
+    height 0.25s ease-out,
+    background-color 0.25s ease-out,
+    box-shadow 0.25s ease-out;
+}
+
+.custom-cursor-ball--active {
+  width: var(--cursor-ball-size-active);
+  height: var(--cursor-ball-size-active);
+  background: var(--cursor-color-active);
+  box-shadow: 0 0 0 8px color-mix(in srgb, var(--cursor-color-active) 18%, transparent);
+}
+
+.custom-cursor-dot {
+  width: var(--cursor-dot-size);
+  height: var(--cursor-dot-size);
+  background: var(--cursor-color-active);
+  opacity: 0.85;
+}
+
+@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .custom-cursor-ball,
+  .custom-cursor-dot {
+    display: none !important;
+  }
+  .custom-cursor-active,
+  .custom-cursor-active * {
+    cursor: auto !important;
+  }
+}
+
+/*
+ * "Sky" light/dark toggle switch (components/ui/theme-toggle.tsx).
+ *
+ * Sourced from a pasted styled-components component. This codebase has no
+ * other CSS-in-JS anywhere (Tailwind utilities everywhere, with plain CSS
+ * only for complex one-off animations like the custom cursor above), so
+ * rather than adding styled-components as a second styling system just for
+ * one widget, this is the same CSS ported to a plain, globally-scoped block
+ * — same class names, same visuals, zero new dependency. The component
+ * itself renders a real controlled checkbox wired to the site's actual
+ * data-theme state (see theme-toggle.tsx), not the static demo markup the
+ * original component shipped with.
+ *
+ * Sizing is the "em" trick: every selector below pins its own font-size to
+ * --toggle-size, and every dimension is written in em, so the whole switch
+ * scales from that one variable. theme-toggle.tsx overrides it inline to a
+ * compact size that fits the header's icon row; the 30px default below is
+ * what you get if it's ever dropped in somewhere larger.
+ */
+.theme-switch {
+  --toggle-size: 30px;
+  --container-width: 5.625em;
+  --container-height: 2.5em;
+  --container-radius: 6.25em;
+  --container-light-bg: #3d7eae;
+  --container-night-bg: #1d1f2c;
+  --circle-container-diameter: 3.375em;
+  --sun-moon-diameter: 2.125em;
+  --sun-bg: #ecca2f;
+  --moon-bg: #c4c9d1;
+  --spot-color: #959db1;
+  --circle-container-offset: calc((var(--circle-container-diameter) - var(--container-height)) / 2 * -1);
+  --stars-color: #fff;
+  --clouds-color: #f3fdff;
+  --back-clouds-color: #aacadf;
+  --transition: 0.5s cubic-bezier(0, -0.02, 0.4, 1.25);
+  --circle-transition: 0.3s cubic-bezier(0, -0.02, 0.35, 1.17);
+}
+
+.theme-switch,
+.theme-switch *,
+.theme-switch *::before,
+.theme-switch *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-size: var(--toggle-size);
+}
+
+.theme-switch__container {
+  width: var(--container-width);
+  height: var(--container-height);
+  background-color: var(--container-light-bg);
+  border-radius: var(--container-radius);
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow:
+    0em -0.062em 0.062em rgba(0, 0, 0, 0.25),
+    0em 0.062em 0.125em rgba(255, 255, 255, 0.94);
+  transition: var(--transition);
+  position: relative;
+}
+
+.theme-switch__container::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  box-shadow:
+    0em 0.05em 0.187em rgba(0, 0, 0, 0.25) inset,
+    0em 0.05em 0.187em rgba(0, 0, 0, 0.25) inset;
+  border-radius: var(--container-radius);
+}
+
+.theme-switch__checkbox {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+}
+
+.theme-switch__circle-container {
+  width: var(--circle-container-diameter);
+  height: var(--circle-container-diameter);
+  background-color: rgba(255, 255, 255, 0.1);
+  position: absolute;
+  left: var(--circle-container-offset);
+  top: var(--circle-container-offset);
+  border-radius: var(--container-radius);
+  box-shadow:
+    inset 0 0 0 3.375em rgba(255, 255, 255, 0.1),
+    inset 0 0 0 3.375em rgba(255, 255, 255, 0.1),
+    0 0 0 0.625em rgba(255, 255, 255, 0.1),
+    0 0 0 1.25em rgba(255, 255, 255, 0.1);
+  display: flex;
+  transition: var(--circle-transition);
+  pointer-events: none;
+}
+
+.theme-switch__sun-moon-container {
+  pointer-events: auto;
+  position: relative;
+  z-index: 2;
+  width: var(--sun-moon-diameter);
+  height: var(--sun-moon-diameter);
+  margin: auto;
+  border-radius: var(--container-radius);
+  background-color: var(--sun-bg);
+  box-shadow:
+    0.062em 0.062em 0.062em 0em rgba(254, 255, 239, 0.61) inset,
+    0em -0.062em 0.062em 0em #a1872a inset;
+  filter: drop-shadow(0.062em 0.125em 0.125em rgba(0, 0, 0, 0.25))
+    drop-shadow(0em 0.062em 0.125em rgba(0, 0, 0, 0.25));
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.theme-switch__moon {
+  transform: translateX(100%);
+  width: 100%;
+  height: 100%;
+  background-color: var(--moon-bg);
+  border-radius: inherit;
+  box-shadow:
+    0.062em 0.062em 0.062em 0em rgba(254, 255, 239, 0.61) inset,
+    0em -0.062em 0.062em 0em #969696 inset;
+  transition: var(--transition);
+  position: relative;
+}
+
+.theme-switch__spot {
+  position: absolute;
+  top: 0.75em;
+  left: 0.312em;
+  width: 0.75em;
+  height: 0.75em;
+  border-radius: var(--container-radius);
+  background-color: var(--spot-color);
+  box-shadow: 0em 0.0312em 0.062em rgba(0, 0, 0, 0.25) inset;
+}
+
+.theme-switch__spot:nth-of-type(2) {
+  width: 0.375em;
+  height: 0.375em;
+  top: 0.937em;
+  left: 1.375em;
+}
+
+.theme-switch__spot:nth-last-of-type(3) {
+  width: 0.25em;
+  height: 0.25em;
+  top: 0.312em;
+  left: 0.812em;
+}
+
+.theme-switch__clouds {
+  width: 1.25em;
+  height: 1.25em;
+  background-color: var(--clouds-color);
+  border-radius: var(--container-radius);
+  position: absolute;
+  bottom: -0.625em;
+  left: 0.312em;
+  box-shadow:
+    0.937em 0.312em var(--clouds-color),
+    -0.312em -0.312em var(--back-clouds-color),
+    1.437em 0.375em var(--clouds-color),
+    0.5em -0.125em var(--back-clouds-color),
+    2.187em 0 var(--clouds-color),
+    1.25em -0.062em var(--back-clouds-color),
+    2.937em 0.312em var(--clouds-color),
+    2em -0.312em var(--back-clouds-color),
+    3.625em -0.062em var(--clouds-color),
+    2.625em 0em var(--back-clouds-color),
+    4.5em -0.312em var(--clouds-color),
+    3.375em -0.437em var(--back-clouds-color),
+    4.625em -1.75em 0 0.437em var(--clouds-color),
+    4em -0.625em var(--back-clouds-color),
+    4.125em -2.125em 0 0.437em var(--back-clouds-color);
+  transition: 0.5s cubic-bezier(0, -0.02, 0.4, 1.25);
+}
+
+.theme-switch__stars-container {
+  position: absolute;
+  color: var(--stars-color);
+  top: -100%;
+  left: 0.312em;
+  width: 2.75em;
+  height: auto;
+  transition: var(--transition);
+}
+
+.theme-switch__checkbox:checked + .theme-switch__container {
+  background-color: var(--container-night-bg);
+}
+
+.theme-switch__checkbox:checked + .theme-switch__container .theme-switch__circle-container {
+  left: calc(100% - var(--circle-container-offset) - var(--circle-container-diameter));
+}
+
+.theme-switch__checkbox:checked + .theme-switch__container .theme-switch__circle-container:hover {
+  left: calc(100% - var(--circle-container-offset) - var(--circle-container-diameter) - 0.187em);
+}
+
+.theme-switch__circle-container:hover {
+  left: calc(var(--circle-container-offset) + 0.187em);
+}
+
+.theme-switch__checkbox:checked + .theme-switch__container .theme-switch__moon {
+  transform: translate(0);
+}
+
+.theme-switch__checkbox:checked + .theme-switch__container .theme-switch__clouds {
+  bottom: -4.062em;
+}
+
+.theme-switch__checkbox:checked + .theme-switch__container .theme-switch__stars-container {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.theme-switch__checkbox:focus-visible + .theme-switch__container {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-switch__container,
+  .theme-switch__circle-container,
+  .theme-switch__sun-moon-container,
+  .theme-switch__moon,
+  .theme-switch__clouds,
+  .theme-switch__stars-container {
+    transition-duration: 0.01ms !important;
+  }
+}
