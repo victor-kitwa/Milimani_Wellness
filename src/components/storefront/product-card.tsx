@@ -106,12 +106,12 @@ export function ProductCard({ product }: { product: ProductCardData }) {
           )}
         </p>
 
-        <div className="mt-4 flex items-center justify-between rounded-lg border border-[hsl(var(--theme-color)/0.35)] bg-[hsl(var(--theme-color)/0.2)] px-3.5 py-2.5 backdrop-blur-md transition-all duration-300 group-hover:border-[hsl(var(--theme-color)/0.5)] group-hover:bg-[hsl(var(--theme-color)/0.4)]">
-          <span className="text-sm font-semibold tracking-wide">
+        <div className="mt-2 flex items-center justify-between rounded-lg border border-[hsl(var(--theme-color)/0.35)] bg-[hsl(var(--theme-color)/0.2)] px-2 py-1 backdrop-blur-md transition-all duration-300 group-hover:border-[hsl(var(--theme-color)/0.5)] group-hover:bg-[hsl(var(--theme-color)/0.4)] sm:mt-4 sm:px-3.5 sm:py-2.5">
+          <span className="whitespace-nowrap text-[11px] font-semibold tracking-wide sm:text-sm">
             {outOfStock ? "Notify me" : "View product"}
           </span>
           <ArrowRight
-            className="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:translate-x-1"
+            className="h-3 w-3 shrink-0 transition-transform duration-300 group-hover:translate-x-1 sm:h-4 sm:w-4"
             aria-hidden="true"
           />
         </div>
