@@ -94,7 +94,7 @@ export function ProductCard({ product }: { product: ProductCardData }) {
 
       {/* Content, bottom-anchored */}
       <div className="relative flex h-full flex-col justify-end p-4 text-white sm:p-5">
-        <h3 className="line-clamp-2 text-xl font-bold tracking-tight sm:text-2xl">
+        <h3 className="line-clamp-2 text-sm font-bold tracking-tight sm:text-lg lg:text-2xl">
           {product.name}
         </h3>
         <p className="mt-1 flex items-baseline gap-1.5 text-sm font-medium text-white/85">
